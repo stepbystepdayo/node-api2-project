@@ -108,10 +108,10 @@ router.delete("/:id", async (req, res) => {
 //6 [GET] /api/posts/:id/comments
 
 router.get("/:id/comments", (req, res) => {
-  const { postId } = req.params.id;
-  Post.findPostComments(postId)
+  const { id } = req.params;
+  Post.findCommentById(id)
     .then((comment) => {
-      if (!postId) {
+      if (!comment) {
         res
           .status(404)
           .json({ message: "The post with the specified ID does not exist" });
